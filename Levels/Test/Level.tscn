@@ -1,0 +1,160 @@
+[gd_scene load_steps=7 format=2]
+
+[ext_resource path="res://assets/Player/Player.tscn" type="PackedScene" id=1]
+[ext_resource path="res://assets/Materials/Grid/Materials/M_Grid_Purple_01.material" type="Material" id=2]
+[ext_resource path="res://assets/Materials/Grid/Materials/M_Grid_Green_01.material" type="Material" id=3]
+[ext_resource path="res://Environment.tres" type="Environment" id=4]
+[ext_resource path="res://assets/Materials/Grid/Materials/M_Grid_Black_01.material" type="Material" id=5]
+[ext_resource path="res://assets/Materials/Grid/Materials/M_Grid_Black_Wall.material" type="Material" id=7]
+
+[node name="Level" type="Spatial"]
+
+[node name="Lighting" type="Node" parent="."]
+
+[node name="DirectionalLight" type="DirectionalLight" parent="Lighting"]
+transform = Transform( 1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 30, 0 )
+shadow_enabled = true
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="Lighting"]
+environment = ExtResource( 4 )
+
+[node name="CSGCombiner" type="CSGCombiner" parent="."]
+use_collision = true
+
+[node name="SpaceArea_01" type="CSGCombiner" parent="CSGCombiner"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 0 )
+
+[node name="Space_01" type="CSGBox" parent="CSGCombiner/SpaceArea_01"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -28, 5, -30 )
+width = 24.0
+height = 7.0
+depth = 20.0
+material = ExtResource( 7 )
+
+[node name="Inner" type="CSGBox" parent="CSGCombiner/SpaceArea_01/Space_01"]
+operation = 2
+width = 22.0
+height = 7.0
+depth = 18.0
+material = ExtResource( 7 )
+
+[node name="Shelf_01" type="CSGBox" parent="CSGCombiner/SpaceArea_01/Space_01"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -10, -1.246, 4 )
+height = 0.5
+depth = 10.0
+material = ExtResource( 5 )
+
+[node name="Gap" type="CSGBox" parent="CSGCombiner/SpaceArea_01/Space_01"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 1, 9.5 )
+operation = 2
+width = 8.0
+height = 5.01
+depth = 1.02
+material = ExtResource( 5 )
+
+[node name="Window_01" type="CSGBox" parent="CSGCombiner/SpaceArea_01/Space_01"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 5.5, 0.5, 9.5 )
+operation = 2
+width = 9.0
+height = 3.5
+depth = 1.0
+material = ExtResource( 5 )
+
+[node name="Door" type="CSGBox" parent="CSGCombiner/SpaceArea_01/Space_01"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 11.5, -1, -4.51 )
+operation = 2
+width = 1.0
+height = 5.0
+depth = 3.0
+material = ExtResource( 5 )
+
+[node name="Window_02" type="CSGBox" parent="CSGCombiner/SpaceArea_01/Space_01"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 11.5, 0.5, 3 )
+operation = 2
+width = 1.0
+height = 3.0
+depth = 6.0
+material = ExtResource( 5 )
+
+[node name="Space_02" type="CSGBox" parent="CSGCombiner/SpaceArea_01"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -28, 5.01, -10 )
+width = 24.0
+height = 7.0
+depth = 20.0
+material = ExtResource( 2 )
+
+[node name="Inner" type="CSGBox" parent="CSGCombiner/SpaceArea_01/Space_02"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.507 )
+operation = 2
+width = 22.0
+height = 7.0
+depth = 19.0
+material = ExtResource( 2 )
+
+[node name="SpaceArea_02" type="CSGCombiner" parent="CSGCombiner"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 0 )
+
+[node name="Stair_01" type="CSGPolygon" parent="CSGCombiner/SpaceArea_02"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -14, 1.13766, 30.6568 )
+use_collision = true
+polygon = PoolVector2Array( -24, 6, -22, 6, -22, 5.6, -20, 5.6, -20, 5.2, -18, 5.2, -18, 4.8, -16, 4.8, -16, 4.2, -14, 4.2, -14, 3.8, -12, 3.8, -12, 3.4, -10, 3.4, -10, 3, -8, 3, -8, 2.6, -6, 2.6, -6, 2.2, -4, 2.2, -4, 1.8, -2, 1.8, -2, 1.4, 0, 1.4, 0, 0 )
+depth = 4.0
+material = ExtResource( 3 )
+
+[node name="Blocks" type="CSGBox" parent="CSGCombiner/SpaceArea_02"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -16.049, 3, 6.33824 )
+
+[node name="CSGBox2" type="CSGBox" parent="CSGCombiner/SpaceArea_02/Blocks"]
+width = 4.0
+depth = 6.0
+material = ExtResource( 3 )
+
+[node name="CSGBox3" type="CSGBox" parent="CSGCombiner/SpaceArea_02/Blocks"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 2, 0 )
+width = 4.0
+depth = 6.0
+material = ExtResource( 3 )
+
+[node name="CSGBox4" type="CSGBox" parent="CSGCombiner/SpaceArea_02/Blocks"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -8, 4, 0 )
+width = 4.0
+depth = 6.0
+material = ExtResource( 3 )
+
+[node name="CSGBox5" type="CSGBox" parent="CSGCombiner/SpaceArea_02/Blocks"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -16, 6, 0 )
+width = 12.0
+depth = 6.0
+material = ExtResource( 3 )
+
+[node name="slope_01" type="CSGPolygon" parent="CSGCombiner/SpaceArea_02"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -15, 2, 14.6501 )
+polygon = PoolVector2Array( -23, 8, -5, 8, 1, 0, -23, 0 )
+depth = 3.0
+material = ExtResource( 3 )
+
+[node name="slope_02" type="CSGPolygon" parent="CSGCombiner/SpaceArea_02"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -15, 2, 20 )
+polygon = PoolVector2Array( -23, 8, -10, 8, 1, 0, -23, 0 )
+depth = 4.0
+material = ExtResource( 3 )
+
+[node name="slope_04" type="CSGPolygon" parent="CSGCombiner/SpaceArea_02"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -15, 2, 25.1835 )
+polygon = PoolVector2Array( -23, 8, -23, 8, 1, 0, -23, 0 )
+depth = 4.0
+material = ExtResource( 3 )
+
+[node name="SpaceArea_03" type="CSGCombiner" parent="CSGCombiner"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 0 )
+
+[node name="Floor" type="CSGBox" parent="CSGCombiner"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0 )
+use_collision = true
+width = 80.0
+height = 1.0
+depth = 80.0
+material = ExtResource( 5 )
+
+[node name="Player" parent="." instance=ExtResource( 1 )]
+transform = Transform( -1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -10, 2, -35 )

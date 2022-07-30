@@ -1,0 +1,29 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://assets/Player/scripts/Player.gd" type="Script" id=1]
+[ext_resource path="res://assets/Player/Models/Vanguard.tscn" type="PackedScene" id=2]
+
+[sub_resource type="CapsuleShape" id=4]
+height = 2.0
+
+[node name="Player" type="KinematicBody"]
+script = ExtResource( 1 )
+__meta__ = {
+"_editor_description_": "Third Person Player"
+}
+
+[node name="Model" type="CollisionShape" parent="."]
+transform = Transform( 1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 2, 0 )
+shape = SubResource( 4 )
+
+[node name="Vanguard" parent="Model" instance=ExtResource( 2 )]
+transform = Transform( -2, 3.01992e-07, -1.32005e-14, 0, -8.74228e-08, -2, -3.01992e-07, -2, 8.74228e-08, 0, 0, 2 )
+
+[node name="SpringArm" type="SpringArm" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3, 0 )
+spring_length = 5.0
+margin = 0.5
+
+[node name="Camera" type="Camera" parent="SpringArm"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 5 )
+far = 300.0
